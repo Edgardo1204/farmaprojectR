@@ -56,7 +56,7 @@ const ShowMedicamentos = () => {
                             <td> {medicamento.precio} </td>
                             <td> {medicamento.laboratorio} </td>
                             <td>
-                                <Link to={`/edit/${medicamento.id}`} className='btn btn-warning'>Edit</Link>
+                                <Link to={`/edit/${medicamento.id}`} className='btn btn-warning'>Editar</Link>
                                 <button onClick={() => deleteMedicamento(medicamento.id)} className='btn btn-danger'>Delete</button>
                             </td>
                         </tr>

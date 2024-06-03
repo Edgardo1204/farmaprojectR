@@ -1,11 +1,12 @@
 import './App.css';
+
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
-import ShowMedicamentos from './components/ShowMedicamentos';
-import CreateMedicamento from './components/CreateMedicamento';
-// import EditMedicamento from './components/EditMedicamento';
 import Navbar from './components/Navbar';
+import ShowMedicamentos from './components/Medicamento/ShowMedicamentos';
+import CreateMedicamento from './components/Medicamento/CreateMedicamento';
+import EditMedicamento from './components/Medicamento/EditMedicamento';
 
 function App() {
   return (
@@ -14,9 +15,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/medicamentos" element={<ShowMedicamentos />} />
-          <Route path="/medicamentos/create" element={<CreateMedicamento />} />
-          {/* <Route path="/medicamentos/edit/:id" element={<EditMedicamento />} /> */}
+          <Route path='/' element={<ShowMedicamentos />} />
+          <Route path='/create' element={<CreateMedicamento/>} />
+          <Route path='/edit' element={<EditMedicamento/>} />
         </Routes>
       </BrowserRouter>
     </div>
