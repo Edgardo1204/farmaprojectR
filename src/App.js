@@ -1,6 +1,9 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Navbar from './components/Navbar';
 import ShowMedicamentos from './components/Medicamento/ShowMedicamentos';
 import CreateMedicamento from './components/Medicamento/CreateMedicamento';
 import EditMedicamento from './components/Medicamento/EditMedicamento';
@@ -15,7 +18,9 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Navbar />
         <Routes>
+
           <Route path='/medicamentos' element={<ShowMedicamentos />} />
           <Route path='/createmedicamento' element={<CreateMedicamento />} />
           <Route path='/editmedicamento/:id' element={<EditMedicamento />} />
@@ -25,6 +30,7 @@ function App() {
           <Route path='/editDepartamento/:id' element={<EditDepartamento />} />
 
           <Route path='/inventario/:id' element={<ShowInventario />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>
