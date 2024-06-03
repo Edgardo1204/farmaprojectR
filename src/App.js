@@ -1,5 +1,4 @@
 import './App.css';
-//import './customcss/style.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import ShowMedicamentos from './components/Medicamento/ShowMedicamentos';
