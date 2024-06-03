@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
-const endpoint = 'http://localhost:8000/api/login'; // Actualiza el endpoint según sea necesario
+const endpoint = 'http://localhost:8000/api/auth/login'; // Actualiza el endpoint según sea necesario
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -16,7 +16,7 @@ const Login = () => {
             const response = await axios.post(endpoint, { email, password });
             const token = response.data.token;
             localStorage.setItem('token', token);
-            navigate('/dashboard'); // Redirige a la página principal después del login
+            navigate('/show-medicamentos'); // Redirige a la página principal después del login
         } catch (err) {
             setError('Credenciales incorrectas, por favor intenta de nuevo.');
         }

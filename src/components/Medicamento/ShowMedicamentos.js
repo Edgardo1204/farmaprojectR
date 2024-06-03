@@ -57,6 +57,7 @@ const ShowMedicamentos = () => {
                             <td>{medicamento.precio}</td>
                             <td>{medicamento.laboratorio}</td>
                             <td>
+
                                 <Link to={`/editmedicamento/${medicamento.id}`} className="btn btn-warning me-2" style={{ backgroundColor: '#fcad65', borderColor: '#fcad65' }}>Editar</Link>
                                 <button onClick={() => deleteMedicamento(medicamento.id)} className="btn btn-danger" style={{ backgroundColor: '#f58a8a', borderColor: '#f58a8a' }}>Eliminar</button>
                             </td>

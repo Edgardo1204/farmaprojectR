@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const endpoint = 'http://localhost:8000/auth/register'; // Actualiza el endpoint según sea necesario
+const endpoint = 'http://localhost:8000/api/auth/register'; // Actualiza el endpoint según sea necesario
 
 const AddUser = () => {
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleAddUser = async (e) => {
         e.preventDefault();
+        if (password !== confirmPassword) {
+            setError('Las contraseñas no coinciden.');
+            return;
+        }
         try {
             await axios.post(endpoint, { name, lastname, email, password });
             navigate('/users'); // Redirige a la lista de usuarios después de agregar uno nuevo
@@ -69,6 +74,17 @@ const AddUser = () => {
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group mb-3">
+                        <label htmlFor="confirmPassword">Confirmar Contraseña</label>
+                        <input
+                            type="password"
+                            className="form-control"
+                            id="confirmPassword"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                             required
                         />
                     </div>
