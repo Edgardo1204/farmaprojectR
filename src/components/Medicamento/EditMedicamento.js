@@ -26,7 +26,7 @@ const EditMedicamento = () => {
                 precio: precio,
                 laboratorio: laboratorio
             });
-            navigate('/');
+            navigate('/medicamentos');
         } catch (error) {
             console.error("Error updating medicamento:", error);
         }
@@ -52,7 +52,7 @@ const EditMedicamento = () => {
     return (
         <div className="container mt-5" style={{ backgroundColor: '#E9ECEF' }}>
             <div className="d-grid gap-2">
-                <Link to="/" className="btn btn-success btn-sm position-absolute top-0 end-0 m-2" style={{ backgroundColor: '#f6a8c9', borderColor: '#f6a8c9' }}>Volver</Link>
+                <Link to="/medicamentos" className="btn btn-success btn-sm position-absolute top-0 end-0 m-2" style={{ backgroundColor: '#f6a8c9', borderColor: '#f6a8c9' }}>Volver</Link>
             </div>
             <div className="row justify-content-center">
                 <div className="col-md-6">

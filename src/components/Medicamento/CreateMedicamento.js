@@ -31,7 +31,7 @@ const CreateMedicamento = () => {
     return (
         <div className="container mt-3" style={{ maxWidth: '600px' }}>
             <div className="d-grid gap-2">
-                <Link to="/" className="btn btn-success btn-sm position-absolute top-0 end-0 m-2" style={{ backgroundColor: '#6A5ACD', borderColor: '#6A5ACD' }}>Volver</Link>
+                <Link to="/medicamentos" className="btn btn-success btn-sm position-absolute top-0 end-0 m-2" style={{ backgroundColor: '#6A5ACD', borderColor: '#6A5ACD' }}>Volver</Link>
             </div>
             <h3 className="text-center mb-4" style={{ color: '#6A5ACD' }}>Registrar nuevo medicamento</h3>
             <form onSubmit={store}>
