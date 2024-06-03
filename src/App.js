@@ -12,8 +12,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<ShowMedicamentos />} />
-          <Route path='/create' element={<CreateMedicamento />} />
-          <Route path='/edit/:id' element={<EditMedicamento />} />
+          <Route path='/create' element={<CreateMedicamento/>} />
+          <Route path='/edit' element={<EditMedicamento/>} />
         </Routes>
       </BrowserRouter>
     </div>
