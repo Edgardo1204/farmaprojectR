@@ -2,9 +2,9 @@ import './App.css';
 //import './customcss/style.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import ShowMedicamentos from './components/ShowMedicamentos';
-import CreateMedicamento from './components/CreateMedicamento';
-//import EditMedicamento from './components/EditMedicamento';
+import ShowMedicamentos from './components/Medicamento/ShowMedicamentos';
+import CreateMedicamento from './components/Medicamento/CreateMedicamento';
+import EditMedicamento from './components/Medicamento/EditMedicamento';
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
         <Routes>
           <Route path='/' element={<ShowMedicamentos />} />
           <Route path='/create' element={<CreateMedicamento/>} />
+          <Route path='/edit' element={<EditMedicamento/>} />
         </Routes>
       </BrowserRouter>
     </div>
