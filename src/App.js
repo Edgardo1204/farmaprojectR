@@ -1,7 +1,5 @@
 import './App.css';
 //import './customcss/style.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
@@ -18,18 +16,20 @@ import CreateDepartamento from './components/Departamento/createDepartamento';
 import EditDepartamento from './components/Departamento/editDepartamento';
 
 import ShowInventario from './components/Inventario/ShowMedicamentosD';
+import EditMedicamentoD from './components/Inventario/EditMedicamentoD';
+import CreateMedicamentoD from './components/Inventario/CreateMedicamentoD';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
+        {/* <Navbar /> */}
         <Routes>
 
           <Route path='/' element={<Login />} />
           <Route path="/nuevo-usuario" element={<AddUser />} />
           <Route path='/edit-user/:id' element={<EditUser />} />
-            
+
           <Route path='/medicamentos' element={<ShowMedicamentos />} />
           <Route path='/createmedicamento' element={<CreateMedicamento />} />
           <Route path='/editmedicamento/:id' element={<EditMedicamento />} />
@@ -39,7 +39,10 @@ function App() {
           <Route path='/editDepartamento/:id' element={<EditDepartamento />} />
 
           <Route path='/inventario/:id' element={<ShowInventario />} />
-          <Route path="/" element={<Home />} />
+          <Route path='/editMedicamentoD/:id' element={<EditMedicamentoD />} />
+          <Route path='/createMedicamentoD/:id' element={<CreateMedicamentoD />} />
+
+          <Route path="/home" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>

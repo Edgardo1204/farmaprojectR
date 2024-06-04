@@ -16,7 +16,7 @@ const Login = () => {
             const response = await axios.post(endpoint, { email, password });
             const token = response.data.token;
             localStorage.setItem('token', token);
-            navigate('/show-medicamentos'); // Redirige a la página principal después del login
+            navigate('/home'); // Redirige a la página principal después del login
         } catch (err) {
             setError('Credenciales incorrectas, por favor intenta de nuevo.');
         }
