@@ -18,7 +18,7 @@ const CreateDepartamento = () => {
             nombre: nombre,
             ubicacion: ubicacion,
         })
-        navigate('/');
+        navigate('/departamentos');
     };
 
     return (
