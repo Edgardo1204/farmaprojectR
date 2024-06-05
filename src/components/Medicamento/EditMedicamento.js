@@ -4,12 +4,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 const endpoint = 'http://localhost:8000/api/medicamento/';
+const categoriesEndpoint = 'http://localhost:8000/api/categorias/';
 
 const EditMedicamento = () => {
     const [nombre, setNombre] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [fechavencimiento, setFechavencimiento] = useState('');
     const [categoria, setCategoria] = useState('');
+    const [categorias, setCategorias] = useState([]);
     const [precio, setPrecio] = useState(0);
     const [laboratorio, setLaboratorio] = useState('');
     const navigate = useNavigate();
@@ -22,7 +24,7 @@ const EditMedicamento = () => {
                 nombre: nombre,
                 descripcion: descripcion,
                 fechavencimiento: fechavencimiento,
-                categoria: categoria,
+                categoria_id: categoria, // Asegúrate de enviar el ID de la categoría
                 precio: precio,
                 laboratorio: laboratorio
             });
@@ -39,14 +41,23 @@ const EditMedicamento = () => {
                 setNombre(response.data.data.nombre);
                 setDescripcion(response.data.data.descripcion);
                 setFechavencimiento(response.data.data.fechavencimiento);
-                setCategoria(response.data.data.categoria);
+                setCategoria(response.data.data.categoria_id); // Asegúrate de obtener el ID de la categoría
                 setPrecio(response.data.data.precio);
                 setLaboratorio(response.data.data.laboratorio);
             } catch (error) {
                 console.error("Error fetching medicamento:", error);
             }
         };
+        const getAllCategorias = async () => {
+            try {
+                const response = await axios.get(categoriesEndpoint);
+                setCategorias(response.data);
+            } catch (error) {
+                console.error("Error fetching categories:", error);
+            }
+        };
         getMedicamentoId();
+        getAllCategorias();
     }, [id]);
 
     return (
@@ -66,7 +77,7 @@ const EditMedicamento = () => {
                                         value={nombre}
                                         onChange={(e) => setNombre(e.target.value)}
                                         type="text"
-                                        className="form-control text-center" // Añadido text-center aquí
+                                        className="form-control text-center"
                                     />
                                 </div>
 
@@ -75,7 +86,7 @@ const EditMedicamento = () => {
                                     <textarea
                                         value={descripcion}
                                         onChange={(e) => setDescripcion(e.target.value)}
-                                        className="form-control text-center" // Añadido text-center aquí
+                                        className="form-control text-center"
                                         rows="2"
                                     ></textarea>
                                 </div>
@@ -86,18 +97,23 @@ const EditMedicamento = () => {
                                         value={fechavencimiento}
                                         onChange={(e) => setFechavencimiento(e.target.value)}
                                         type="date"
-                                        className="form-control text-center" // Añadido text-center aquí
+                                        className="form-control text-center"
                                     />
                                 </div>
 
                                 <div className="mb-3">
                                     <label className="form-label">Categoría</label>
-                                    <input
+                                    <select
                                         value={categoria}
                                         onChange={(e) => setCategoria(e.target.value)}
-                                        type="text"
-                                        className="form-control text-center" // Añadido text-center aquí
-                                    />
+                                        className="form-control text-center"
+                                    >
+                                        {categorias.map((cat) => (
+                                            <option key={cat.id} value={cat.id}>
+                                                {cat.nombre}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
 
                                 <div className="mb-3">
@@ -106,7 +122,7 @@ const EditMedicamento = () => {
                                         value={precio}
                                         onChange={(e) => setPrecio(e.target.value)}
                                         type="number"
-                                        className="form-control text-center" // Añadido text-center aquí
+                                        className="form-control text-center"
                                     />
                                 </div>
 
@@ -116,7 +132,7 @@ const EditMedicamento = () => {
                                         value={laboratorio}
                                         onChange={(e) => setLaboratorio(e.target.value)}
                                         type="text"
-                                        className="form-control text-center" // Añadido text-center aquí
+                                        className="form-control text-center"
                                     />
                                 </div>
 

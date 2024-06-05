@@ -1,31 +1,50 @@
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
 const endpoint = 'http://localhost:8000/api/medicamento';
+const categoriesEndpoint = 'http://localhost:8000/api/categorias';
 
 const CreateMedicamento = () => {
     const [nombre, setNombre] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [fechavencimiento, setFechavencimiento] = useState('');
-    const [categoria, setCategoria] = useState('');
+    const [categoria_id, setCategoriaId] = useState('');
     const [precio, setPrecio] = useState(0);
     const [laboratorio, setLaboratorio] = useState('');
+    const [categorias, setCategorias] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchCategorias = async () => {
+            try {
+                const response = await axios.get(categoriesEndpoint);
+                setCategorias(response.data);
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
+        };
+
+        fetchCategorias();
+    }, []);
 
     const store = async (e) => {
         e.preventDefault();
-        await axios.post(endpoint, {
-            nombre: nombre,
-            descripcion: descripcion,
-            fechavencimiento: fechavencimiento,
-            categoria: categoria,
-            precio: precio,
-            laboratorio: laboratorio
-        })
-        navigate('/');
+        try {
+            await axios.post(endpoint, {
+                nombre,
+                descripcion,
+                fechavencimiento,
+                categoria_id,
+                precio,
+                laboratorio
+            });
+            navigate('/medicamentos');
+        } catch (error) {
+            console.error('Error creating medicamento:', error);
+        }
     };
 
     return (
@@ -72,14 +91,17 @@ const CreateMedicamento = () => {
 
                 <div className="mb-3">
                     <label className="form-label" style={{ color: '#6A5ACD' }}>Categoría</label>
-                    <input
-                        value={categoria}
-                        onChange={(e) => setCategoria(e.target.value)}
-                        type="text"
+                    <select
+                        value={categoria_id}
+                        onChange={(e) => setCategoriaId(e.target.value)}
                         className="form-control"
-                        placeholder="Ingrese la categoría del medicamento"
                         style={{ textAlign: 'center' }}
-                    />
+                    >
+                        <option value="">Seleccione una categoría</option>
+                        {categorias.map(cat => (
+                            <option key={cat.id} value={cat.id}>{cat.nombre}</option>
+                        ))}
+                    </select>
                 </div>
 
                 <div className="mb-3">
@@ -109,7 +131,7 @@ const CreateMedicamento = () => {
                 <button type="submit" className="btn btn-primary w-100" style={{ backgroundColor: '#6A5ACD', border: 'none' }}>Registrar</button>
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default CreateMedicamento;

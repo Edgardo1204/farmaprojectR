@@ -4,29 +4,28 @@ import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
-const endpoint = 'http://localhost:8000/api/departamento';
+const endpoint = 'http://localhost:8000/api/categoria';
 
-const CreateDepartamento = () => {
+const CreateCategoria = () => {
     const [nombre, setNombre] = useState('');
-    const [ubicacion, setUbicacion] = useState('');
-
+    const [descripcion, setDescripcion] = useState('');
     const navigate = useNavigate();
 
     const store = async (e) => {
         e.preventDefault();
         await axios.post(endpoint, {
             nombre: nombre,
-            ubicacion: ubicacion,
+            descripcion: descripcion,
         })
-        navigate('/departamentos');
+        navigate('/categorias');
     };
 
     return (
         <div className="container mt-3" style={{ maxWidth: '600px' }}>
             <div className="d-grid gap-2">
-                <Link to="/departamentos" className="btn btn-success btn-sm position-absolute top-0 end-0 m-2" style={{ backgroundColor: '#6A5ACD', borderColor: '#6A5ACD' }}>Volver</Link>
+                <Link to="/categorias" className="btn btn-success btn-sm position-absolute top-0 end-0 m-2" style={{ backgroundColor: '#6A5ACD', borderColor: '#6A5ACD' }}>Volver</Link>
             </div>
-            <h3 className="text-center mb-4" style={{ color: '#6A5ACD' }}>Registrar nuevo departamento</h3>
+            <h3 className="text-center mb-4" style={{ color: '#6A5ACD' }}>Registrar nueva categoria</h3>
             <form onSubmit={store}>
                 <div className="mb-3">
                     <label className="form-label" style={{ color: '#6A5ACD' }}>Nombre</label>
@@ -35,18 +34,18 @@ const CreateDepartamento = () => {
                         onChange={(e) => setNombre(e.target.value)}
                         type="text"
                         className="form-control"
-                        placeholder="Ingrese el nombre del departamento"
+                        placeholder="Ingrese el nombre de la categoria"
                         style={{ textAlign: 'center' }}
                     />
                 </div>
 
                 <div className="mb-3">
-                    <label className="form-label" style={{ color: '#6A5ACD' }}>Ubicación</label>
+                    <label className="form-label" style={{ color: '#6A5ACD' }}>Descripción</label>
                     <input
-                        value={ubicacion}
-                        onChange={(e) => setUbicacion(e.target.value)}
+                        value={descripcion}
+                        onChange={(e) => setDescripcion(e.target.value)}
                         className="form-control"
-                        placeholder="Ingrese la ubicacion del departamento"
+                        placeholder="Ingrese la descripción de la categoria"
                         style={{ textAlign: 'center' }}
                     />
                 </div>
@@ -57,4 +56,4 @@ const CreateDepartamento = () => {
     )
 }
 
-export default CreateDepartamento;
+export default CreateCategoria;
