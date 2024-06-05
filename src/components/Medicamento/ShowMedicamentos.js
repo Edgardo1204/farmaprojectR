@@ -15,6 +15,7 @@ const ShowMedicamentos = () => {
         try {
             const response = await axios.get(`${endpoint}/medicamentos`);
             setMedicamentos(response.data);
+            console.log("datos", response.data);
         } catch (error) {
             console.error('Error fetching medicamentos:', error);
         }
@@ -53,11 +54,10 @@ const ShowMedicamentos = () => {
                             <td>{medicamento.nombre}</td>
                             <td>{medicamento.descripcion}</td>
                             <td>{medicamento.fechavencimiento}</td>
-                            <td>{medicamento.categoria}</td>
+                            <td>{medicamento.categoria ? medicamento.categoria.nombre : 'Sin categoría'}</td> {/* Mostrar el nombre de la categoría */}
                             <td>{medicamento.precio}</td>
                             <td>{medicamento.laboratorio}</td>
                             <td>
-
                                 <Link to={`/editmedicamento/${medicamento.id}`} className="btn btn-warning me-2" style={{ backgroundColor: '#fcad65', borderColor: '#fcad65' }}>Editar</Link>
                                 <button onClick={() => deleteMedicamento(medicamento.id)} className="btn btn-danger" style={{ backgroundColor: '#f58a8a', borderColor: '#f58a8a' }}>Eliminar</button>
                             </td>

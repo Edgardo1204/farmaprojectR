@@ -19,6 +19,14 @@ import ShowInventario from './components/Inventario/ShowMedicamentosD';
 import EditMedicamentoD from './components/Inventario/EditMedicamentoD';
 import CreateMedicamentoD from './components/Inventario/CreateMedicamentoD';
 
+import ShowCategorias from './components/Categoria/ShowCategorias';
+import CreateCategoria from './components/Categoria/CreateCategoria';
+import EditCategoria from './components/Categoria/EditCategoria';
+
+import ShowProveedores from './components/Proveedores/ShowProveedores';
+import CreateProveedor from './components/Proveedores/CreateProveedor';
+import EditProveedor from './components/Proveedores/EditProveedor';
+
 function App() {
   return (
     <div className="App">
@@ -41,6 +49,16 @@ function App() {
           <Route path='/inventario/:id' element={<ShowInventario />} />
           <Route path='/editMedicamentoD/:id' element={<EditMedicamentoD />} />
           <Route path='/createMedicamentoD/:id' element={<CreateMedicamentoD />} />
+
+          <Route path='/categorias' element={<ShowCategorias />} />
+          <Route path='/createCategoria' element={<CreateCategoria />} />
+          <Route path='/editCategoria/:id' element={<EditCategoria />} />
+
+          <Route path='/proveedores' element={<ShowProveedores />} />
+          <Route path='/createProveedor' element={<CreateProveedor />} />
+          <Route path='/editProveedor/:id' element={<EditProveedor />} />
+
+          
 
           <Route path="/home" element={<Home />} />
         </Routes>
